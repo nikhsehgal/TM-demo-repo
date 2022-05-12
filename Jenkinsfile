@@ -1,19 +1,19 @@
   pipeline {
     agent any
     stages {
-        stage('1') {
+        stage('Building Pilot App') {
             steps {
                 sh 'exit 0'
             }
         }
-        stage('2') {
+        stage('Threat Model Validation') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh "exit 1"
                 }
             }
         }
-        stage('3') {
+        stage('Push') {
             steps {
                 sh 'exit 0'
             }
