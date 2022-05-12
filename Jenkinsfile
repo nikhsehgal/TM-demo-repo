@@ -1,37 +1,22 @@
-pipeline {
+  pipeline {
     agent any
     stages {
-        stage('Checkout'){
+        stage('1') {
             steps {
-                echo 'SCM stage'
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'e63fe600-4939-4815-a2af-10b5ed155c21', url: 'https://github.com/nikhsehgal/TM-demo-repo.git']]])
-                
+                sh 'exit 0'
             }
-            
         }
-        stage('Build'){
-            steps{
-               echo 'Building an Application '
-               git branch: 'main', credentialsId: 'e63fe600-4939-4815-a2af-10b5ed155c21', url: 'https://github.com/nikhsehgal/TM-demo-repo.git'
-              // bat '''batch.bat'''
-              //sh './script.sh'
-              //sh '''chmod +x script.sh , 
-              //./script.sh'''
-              //sh 'bash ./script.sh'
+        stage('2') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "exit 1"
+                }
             }
-        }   
-        stage('ThreatModel Validation'){
-            steps{
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-               echo 'ThreatModeler validation'
-               // step <object of type org.jenkinsci.plugins.threatmodeler.ThreatModelerBuilder>
+        }
+        stage('3') {
+            steps {
+                sh 'exit 0'
             }
-        }    
-        stage('Push'){
-            steps{
-                echo 'Push to Artifactory'
-            }       
-        }    
-        
+        }
     }
 }
