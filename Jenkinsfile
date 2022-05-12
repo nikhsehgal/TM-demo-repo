@@ -22,6 +22,7 @@ pipeline {
         }   
         stage('ThreatModel Validation'){
             steps{
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                echo 'ThreatModeler validation'
                // step <object of type org.jenkinsci.plugins.threatmodeler.ThreatModelerBuilder>
             }
