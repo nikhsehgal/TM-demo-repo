@@ -8,7 +8,7 @@
         }
         stage('Threat Model Validation') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                     sh "exit 1"
                 }
             }
