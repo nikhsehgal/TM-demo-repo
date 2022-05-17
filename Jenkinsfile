@@ -16,9 +16,9 @@ response2=$(curl --location --request POST 'https://deloitte-poc.threatmodeler.n
 echo $response2
 token=`echo $response2 | cut -d '"' -f 4`
 echo $token
-validate=$(curl --location --request POST 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate' --header 'Authorization: Bearer $token' --header 'Content-Type: application/json' --data-raw '{"JenkinsJobName":"$JOB_NAME","ValidateWithThreatRisk":false_or_true}')
+validate=$(curl --location --request POST 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate' --header 'Authorization:Bearer $token' --header 'Content-Type:application/json' --data-raw '{"JenkinsJobName":"$JOB_NAME","ValidateWithThreatRisk":false}')
 
-curlCommand="curl --location --request POST 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate' --header 'Authorization: Bearer $token' --header 'Content-Type: application/json' --data-raw '{\"JenkinsJobName\":\"$JOB_NAME\",\"ValidateWithThreatRisk\":false_or_true}'"
+curlCommand="curl --location --request POST 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate' --header 'Authorization: Bearer $token' --header 'Content-Type: application/json' --data-raw '{\"JenkinsJobName\":\"$JOB_NAME\",\"ValidateWithThreatRisk\":false}'"
 echo $curlCommand
 
 echo $validate
