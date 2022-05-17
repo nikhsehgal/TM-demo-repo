@@ -14,7 +14,8 @@
                 sh '''#!/bin/bash -l
 response2=$(curl --location --request POST 'https://deloitte-poc.threatmodeler.net/token' --header 'Content-Type: application/x-www-form-urlencoded' --data-urlencode 'username=nikhsehgal@deloitte.com' --data-urlencode 'password=Containers@765' --data-urlencode 'grant_type=password')
 echo $response2
-token=`echo -n $response2 | cut -d '"' -f 4`
+//token=`echo -n $response2 | cut -d '"' -f 4`
+token=`echo -n $(echo $response2 | cut -d '"' -f 4)`
 echo $token
 validate=$(curl --location --request POST 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate' --header 'Authorization: Bearer $token' --header 'Content-Type: application/json' --data-raw '{"JenkinsJobName":"${JOB_NAME}","ValidateWithThreatRisk":false}')
 
