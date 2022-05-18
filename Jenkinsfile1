@@ -17,7 +17,7 @@ pipeline {
                 
                 successful="ThreatModeler Validation Successful."
                 
-                 if [[ $response -eq $successful ]]
+                 if [[ $response == $successful ]]
                  then
                     exit 0
                  else 
