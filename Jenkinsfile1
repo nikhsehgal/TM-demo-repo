@@ -14,7 +14,7 @@ pipeline {
                 sh '''#!/bin/bash -l
                 response=$(python3 TM.py "nikhsehgal@deloitte.com" "Containers@765" "TM pipeline")
                 echo $response
-                 if $response == "ThreatModeler Validation Successful."
+                 if $response == "ThreatModeler\ Validation\ Successful."
                  then
                    return exit 0
                  else 
