@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('Building Pilot App') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+        stage('Threat Model Validation') {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                //    sh "exit 1"
+               
+                sh '''#!/bin/bash -l
+                response=$(python TM.py "nikhsehgal@deloitte.com" "Containers@765" "TM pipeline")
+                echo $response
+                '''
+                }
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+    }
+}
