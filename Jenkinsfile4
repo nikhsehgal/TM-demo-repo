@@ -42,7 +42,27 @@
 				}
 			}
 			steps {
-				echo 'tested the application threats...'
+				
+			
+	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
+                sh '''#!/bin/bash -l
+                threatresponse=$(python3 TMthreats.py "nikhsehgal@deloitte.com" "Containers@765" "2077")
+                echo $threatresponse
+                
+                successful="No Threats Detected in ThreatModeler"
+                
+                 if [[ $threatresponse == $successful ]]
+                 then
+                    exit 0
+                 else 
+                    exit 1
+                 fi
+                '''
+                }
+			
+			
+			
+			
 			}	
 		}
 	
