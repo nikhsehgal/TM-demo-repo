@@ -12,7 +12,7 @@ pipeline {
             }
         }
         
-        stage('Threat Model Approval Validation') {
+        stage('Threat Model APPROVAL Validation') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
@@ -32,7 +32,7 @@ pipeline {
             }
         }
                 
-		stage("TM Threats Validations"){
+		stage("Threat Model THREATS Validations"){
 			when{
 				expression {
 					params.ValidateThreats
