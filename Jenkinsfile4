@@ -44,7 +44,11 @@
 			steps {
 				
 			
-	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
+	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
+	         withCredentials([
+		 usernamePassword(credentials: 'TM creds', usernameVariable: USER, passwordVariable: PWD)
+		 ]){
+		 
                 sh '''#!/bin/bash -l
                 threatresponse=$(python3 TMthreats.py "nikhsehgal@deloitte.com" "Containers@765" "2077")
                 echo $threatresponse
@@ -59,7 +63,7 @@
                  fi
                 '''
                 }
-			
+		}	
 			
 			
 			
