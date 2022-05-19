@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-         booleanParam(name: "Validate Threats", defaultValue: false, description: "Perform ThreatModeler Threats Validation.") 
+         booleanParam(name: 'Validate Threats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.') 
         }
     stages {
         stage('Building Pilot App') {
@@ -26,13 +26,13 @@ pipeline {
                  fi
                 '''
                 }
-            }
         when {
                 expression { 
-                   return params.Validate Threats == 'true'
+                   params.Validate Threats == true
                    echo 'Threat Model Threats Validation'
                   // curl script api call threats  }
-             }
+            }
+            }
  }
         
         
