@@ -40,14 +40,14 @@
 			}
 			steps {
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
-	         withCredentials([
-		 usernamePassword(credentials: 'TMcreds', usernameVariable: USER, passwordVariable: PWD)
-		 ])
+	         //withCredentials([
+		 //usernamePassword(credentials: 'TMcreds', usernameVariable: USER, passwordVariable: PWD)
+		 //])
 		 
-		 {
+		 //{
 		 
                   sh '''#!/bin/bash -l
-                  threatresponse=$(python3 TMthreats.py ${USER} ${PWD} "2077")
+                  threatresponse=$(python3 TMthreats.py "nikhsehgal@deloitte.com" "Containers@765" "2077")
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
@@ -62,7 +62,7 @@
                 }
 		}	
 					
-			}	
+			//}	
 		}
 	
       stage('Push') {
