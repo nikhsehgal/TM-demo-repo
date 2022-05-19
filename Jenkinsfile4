@@ -19,7 +19,7 @@
                 response=$(python3 TM.py "nikhsehgal@deloitte.com" "Containers@765" "TM pipeline")
                 echo $response
                 
-                successful="ThreatModeler Validation Successful."
+                successful="ThreatModeler Approval Validation Successful."
                 
                  if [[ $response == $successful ]]
                  then
