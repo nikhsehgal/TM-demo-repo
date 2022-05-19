@@ -1,0 +1,56 @@
+  pipeline {
+	agent any
+	parameters {
+		booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.')
+	}
+	stages {
+    
+    
+        stage('Building Pilot App') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+        
+        stage('Threat Model Approval Validation') {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
+                sh '''#!/bin/bash -l
+                response=$(python3 TM.py "nikhsehgal@deloitte.com" "Containers@765" "TM pipeline")
+                echo $response
+                
+                successful="ThreatModeler Validation Successful."
+                
+                 if [[ $response == $successful ]]
+                 then
+                    exit 0
+                 else 
+                    exit 1
+                 fi
+                '''
+                }
+            }
+        }
+                
+    
+    
+    
+		stage("TM Threats"){
+			when{
+				expression {
+					params.ValidateThreats
+				}
+			}
+			steps {
+				echo 'tested the application threats...'
+			}	
+		}
+	
+      stage('Push') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+    
+    }
+} 
