@@ -1,5 +1,4 @@
-[‎5/‎19/‎2022 4:09 PM]  Singh, Namanpreet:  
-pipeline {
+  pipeline {
 	agent any
 	parameters {
 		booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.')
