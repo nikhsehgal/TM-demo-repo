@@ -46,7 +46,7 @@
 			
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
 	         withCredentials([
-		 usernamePassword(credentials: 'TM creds', usernameVariable: USER, passwordVariable: PWD)
+		 usernamePassword(credentials: 'TMcreds', usernameVariable: USER, passwordVariable: PWD)
 		 ]){
 		 
                 sh '''#!/bin/bash -l
