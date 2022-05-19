@@ -40,7 +40,7 @@ headers = {
 response = requests.get(TMThreatsURL, json=body, headers=headers)
 response_json = json.loads(response.text.encode('utf8'))
 
-if len(response_json["Data"]) > 0:
+if response_json["Data"] != None:
     print("Threats Detected in ThreatModeler")
 else:
     print("No Threats Detected in ThreatModeler")
