@@ -1,23 +1,19 @@
 pipeline {
-    agent any
-    parameters {
-         booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.') 
-        }
-        
-       stages {
-        stage('Building Pilot App') {
-            steps {
-                sh 'exit 0'
-            }
-          }
-        stage("TM Threats"){
-           when{
-              expression {
-                params.ValidateThreats
-               }
-        }
-          steps {
-            echo 'tested the application threats...'
-          }
-    }  
-  }
+	agent any
+	parameters {
+		booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.')
+	}
+
+	stages {
+		stage("TM Threats"){
+			when{
+				expression {
+					params.ValidateThreats
+				}
+			}
+		}
+		steps {
+			echo 'tested the application threats...'
+		}	
+	}
+} 
