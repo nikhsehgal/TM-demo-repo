@@ -30,7 +30,8 @@ pipeline {
                 expression { 
                    params.Validate Threats
                    //echo 'Threat Model Threats Validation'
-                  // curl script api call threats  }
+                  // curl script api call threats 
+                  }
             }
           }
  }
