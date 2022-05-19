@@ -32,9 +32,6 @@
             }
         }
                 
-    
-    
-    
 		stage("TM Threats"){
 			when{
 				expression {
@@ -42,8 +39,6 @@
 				}
 			}
 			steps {
-				
-			
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
 	         withCredentials([
 		 usernamePassword(credentials: 'TMcreds', usernameVariable: USER, passwordVariable: PWD)
@@ -64,9 +59,7 @@
                 '''
                 }
 		}	
-			
-			
-			
+					
 			}	
 		}
 	
