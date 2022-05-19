@@ -28,8 +28,8 @@ pipeline {
                 }
         when {
                 expression { 
-                   params.Validate Threats == true
-                   echo 'Threat Model Threats Validation'
+                   params.Validate Threats
+                   //echo 'Threat Model Threats Validation'
                   // curl script api call threats  }
             }
             }
