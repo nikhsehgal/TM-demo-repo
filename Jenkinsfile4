@@ -47,7 +47,7 @@
 		 {
 		 
                   sh '''#!/bin/bash -l
-                  threatresponse=$(python3 TMthreats.py $USER $PWD "2077")
+                  threatresponse=$(python3 TMthreats.py ${USER} ${PWD} "2077")
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
