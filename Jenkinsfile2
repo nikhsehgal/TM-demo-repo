@@ -32,7 +32,7 @@ pipeline {
                    //echo 'Threat Model Threats Validation'
                   // curl script api call threats  }
             }
-            }
+          }
  }
         
         
@@ -41,5 +41,5 @@ pipeline {
                 sh 'exit 0'
             }
         }
-    }
+    
 }
