@@ -27,15 +27,12 @@ pipeline {
                 '''
                 }
             }
-       
-       
         when {
                 expression { 
                    return params.Validate Threats == 'true'
                    echo 'Threat Model Threats Validation'
-                  // curl script api call threats 
-               }
-        }
+                  // curl script api call threats  }
+             }
  }
         
         
