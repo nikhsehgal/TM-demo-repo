@@ -9,7 +9,7 @@ pipeline {
                 sh 'exit 0'
             }
         }
-        stage('Threat Model Validation') {
+        stage('Threat Model Approval Validation') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
@@ -28,6 +28,15 @@ pipeline {
                 }
             }
         }
+        stage('Threat Model Threats Validation')
+        when {
+                expression { 
+                   return params.Validate Threats (Very High, High) == 'true'
+                  // curl script api call threat
+               
+               }
+        
+        
         stage('Push') {
             steps {
                 sh 'exit 0'
