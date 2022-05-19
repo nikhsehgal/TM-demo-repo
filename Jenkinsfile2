@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'Validate Threats (Very High, High)', description: 'To validate ThreatModeler Threats')
+        }
     stages {
         stage('Building Pilot App') {
             steps {
