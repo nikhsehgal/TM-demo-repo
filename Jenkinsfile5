@@ -41,9 +41,7 @@ pipeline {
 			steps {
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
 	         withCredentials([usernameColonPassword(credentialsId: 'TMcreds', variable: 'TMcreds'), usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
-                                     // some block
-                                     }
-		 
+                                     
                   sh '''#!/bin/bash -l
                   threatresponse=$(python3 TMthreats.py "nikhsehgal@deloitte.com" "Containers@765" "2077")
                   echo $threatresponse
@@ -60,7 +58,7 @@ pipeline {
                 }
 		}	
 					
-			//}	
+	          }	
 		}
 	
       stage('Push') {
