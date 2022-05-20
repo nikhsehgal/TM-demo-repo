@@ -39,8 +39,9 @@ pipeline {
 				}
 			}
 			steps {
+			withCredentials([usernameColonPassword(credentialsId: 'TMcreds', variable: 'TMcreds'), usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
-	         withCredentials([usernameColonPassword(credentialsId: 'TMcreds', variable: 'TMcreds'), usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
+	         
                                     
                   sh '''#!/bin/bash -l
 		   echo $USER
