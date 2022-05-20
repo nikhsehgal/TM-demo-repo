@@ -16,7 +16,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
-                response=$(python3 TM.py '{$USER}' '{$PWD}' "TM pipeline")
+                response=$(python3 TM.py "nikhsehgal@deloitte.com" "Containers@765" "TM pipeline")
                 echo $response
                 
                 successful="ThreatModeler Approval Validation Successful."
