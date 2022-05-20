@@ -10,8 +10,8 @@ parser.add_argument("projectId", help="Project ID", type=str)
 
 args = parser.parse_args()
 
-print(args.username)
-print(args.password)
+print("Username: "+ args.username)
+print("Password: " + args.password)
 
 TMAuthenticationURL='https://deloitte-poc.threatmodeler.net/token'
 TMThreatsURL = "https://deloitte-poc.threatmodeler.net/api/project/"+ args.projectId +"/threats/true"
