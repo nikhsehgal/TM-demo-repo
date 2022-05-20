@@ -46,7 +46,7 @@ pipeline {
                   sh '''#!/bin/bash -l
 		   echo ${USER}
 		   echo ${PWD}
-                  threatresponse=$(python3 TMthreats.py '${USER}' '${PWD}' "2077")
+                  threatresponse=$(python3 TMthreats.py "${USER}" "${PWD}" "2077")
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
