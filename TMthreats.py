@@ -10,6 +10,9 @@ parser.add_argument("projectId", help="Project ID", type=str)
 
 args = parser.parse_args()
 
+print(args.username)
+print(args.password)
+
 TMAuthenticationURL='https://deloitte-poc.threatmodeler.net/token'
 TMThreatsURL = "https://deloitte-poc.threatmodeler.net/api/project/"+ args.projectId +"/threats/true"
 username=args.username
@@ -27,7 +30,9 @@ body = {
 }
 
 response = requests.post(TMAuthenticationURL, data=body, headers=headers)
-print(response)
+if response.status_code==400:
+    print("Authentication Failed")
+
 response_json = json.loads(response.text.encode('utf8'))
 access_token=response_json["access_token"]
 
