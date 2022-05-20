@@ -1,18 +1,18 @@
 pipeline {
-	agent any
-	stages {
+    agent any
 
-
-steps {
-			withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
-	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
-	         
-                            
-                sh '''#!/bin/bash -l
-                echo ${USER}
-                echo ${PWD}'''       
-                }
-                }
-                }
-                }
-                }
+    stages {
+        stage('cred') {
+            steps {
+                echo 'Hello World'
+		withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
+		sh '''#!/bin/bash -l
+               echo $USER
+               echo $PASS
+               '''
+}
+		
+            }
+        }
+    }
+}
