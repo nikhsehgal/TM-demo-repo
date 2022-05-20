@@ -41,10 +41,10 @@ pipeline {
 			steps {
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
 	         withCredentials([usernameColonPassword(credentialsId: 'TMcreds', variable: 'TMcreds'), usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
-                   echo '$USER'
-		   echo '$PWD'                  
+                   echo $USER
+		   echo $PWD                  
                   sh '''#!/bin/bash -l
-                  threatresponse=$(python3 TMthreats.py '{$USER}' '{$PWD}' "2077")
+                  threatresponse=$(python3 TMthreats.py '${USER}' '${PWD}' "2077")
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
