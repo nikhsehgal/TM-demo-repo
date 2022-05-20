@@ -27,6 +27,7 @@ body = {
 }
 
 response = requests.post(TMAuthenticationURL, data=body, headers=headers)
+print(response)
 response_json = json.loads(response.text.encode('utf8'))
 access_token=response_json["access_token"]
 
