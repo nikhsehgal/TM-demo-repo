@@ -5,10 +5,8 @@ pipeline {
         }
         stages {
            stage ('TMcredsTest'){
-               steps {
-               
-               sh('curl -u $CREDS_USR:$CREDS_PSW https://deloitte-poc.threatmodeler.net/')
-               sh("echo ${CREDS_USR}:${CREDS_PSW}") 
+               steps { 
+               sh('echo $(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2077)') 
                }
              
            }
