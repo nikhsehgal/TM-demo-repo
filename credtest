@@ -5,11 +5,14 @@ pipeline {
         stage('cred') {
             steps {
 	      scripts {
-                echo 'Hello World'
+               
 		
 		withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
-		println "${USER}"
+		
 		sh '''#!/bin/bash -l
+		echo 'Hello World'
+		println "${USER}"
+		 
                echo "${PWD}"
       }         '''
 }
