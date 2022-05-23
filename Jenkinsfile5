@@ -1,8 +1,8 @@
 pipeline {
 	agent any
-	parameters {
-		booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.')
-	}
+	environment { 
+            CREDS = credentials('TMcreds') 
+        }
 	stages {
     
     
@@ -39,14 +39,11 @@ pipeline {
 				}
 			}
 			steps {
-			withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
 	         
                                     
                   sh '''#!/bin/bash -l
-		   echo ${USER}
-		   echo ${PWD}
-                  threatresponse=$(python3 TMthreats.py "${USER}" "${PWD}" "2077")
+                  threatresponse=$(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2077)
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
@@ -58,8 +55,7 @@ pipeline {
                     exit 1
                  fi
                 '''
-                }
-		}	
+                }	
 					
 	          }	
 		}
