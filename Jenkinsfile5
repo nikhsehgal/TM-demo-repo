@@ -21,6 +21,9 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
+		echo $JOB_NAME
+		echo ${JOB_NAME}
+		echo "${JOB_NAME}"
                 response=$(python3 TM.py $CREDS_USR $CREDS_PSW $JOB_NAME)
                 echo $response
                 
