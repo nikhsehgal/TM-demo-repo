@@ -7,8 +7,7 @@ pipeline {
 		sh '''#!/bin/bash -l
 		echo "Hello World"
 		echo "${PWD}"
-		println "${USER}" 
-                
+		echo "${USER}" 
                 '''
 }
 		
