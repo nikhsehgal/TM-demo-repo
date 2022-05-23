@@ -8,7 +8,7 @@ pipeline {
                steps {
                
                sh('curl -u $CREDS_USR:$CREDS_PSW https://deloitte-poc.threatmodeler.net/')
-               sh('echo $CREDS_USR:$CREDS_PSW') 
+               sh("echo $CREDS_USR:$CREDS_PSW") 
                }
              
            }
