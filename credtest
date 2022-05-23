@@ -10,7 +10,7 @@ pipeline {
 		withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 		println "${USER}"
 		sh '''#!/bin/bash -l
-               echo $PWD
+               echo "${PWD}"
       }         '''
 }
 		
