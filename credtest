@@ -6,8 +6,8 @@ pipeline {
 		withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 		sh '''#!/bin/bash -l
 		echo "Hello World"
-		echo "${PWD}"
 		echo "${USER}" 
+		echo "${PWD}"
                 '''
 }
 		
