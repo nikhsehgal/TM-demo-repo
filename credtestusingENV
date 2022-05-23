@@ -1,8 +1,16 @@
-stage('Example') {
+pipeline {
+   agent any
         environment { 
-            CREDS = credentials('MY_CREDS_DEV') 
+            CREDS = credentials('TMCreds') 
         }
-        steps {
-            sh 'echo hello'
+        stages {
+           stage ('TMcredsTest'){
+               steps {
+               
+               sh('curl -u $CREDS_USR:$CREDS_PSW https://deloitte-poc.threatmodeler.net/')
+               }
+             
+           }
+           
         }
 }
