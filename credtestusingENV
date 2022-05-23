@@ -1,0 +1,8 @@
+stage('Example') {
+        environment { 
+            CREDS = credentials('MY_CREDS_DEV') 
+        }
+        steps {
+            sh 'echo hello'
+        }
+}
