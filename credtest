@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('cred') {
             steps {
-	      scripts {
-               
-		
+	      
 		withCredentials([usernamePassword(credentialsId: 'TMcreds', passwordVariable: 'PWD', usernameVariable: 'USER')]) {
 		
 		sh '''#!/bin/bash -l
@@ -15,7 +13,7 @@ pipeline {
 		 
                echo "${PWD}"
       }         '''
-}
+
 		
             }
         }
