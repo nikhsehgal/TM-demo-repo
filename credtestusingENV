@@ -1,13 +1,14 @@
 pipeline {
    agent any
         environment { 
-            CREDS = credentials('TMCreds') 
+            CREDS = credentials('TMcreds') 
         }
         stages {
            stage ('TMcredsTest'){
                steps {
                
                sh('curl -u $CREDS_USR:$CREDS_PSW https://deloitte-poc.threatmodeler.net/')
+               sh('echo $CREDS_USR:$CREDS_PSW') 
                }
              
            }
