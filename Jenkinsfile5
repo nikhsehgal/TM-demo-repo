@@ -21,7 +21,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
-                response=$(python3 TM.py $CREDS_USR $CREDS_PSW ${JOB_NAME})
+                response=$(python3 TM.py $CREDS_USR $CREDS_PSW $JOB_NAME)
                 echo $response
                 
                 successful="ThreatModeler Approval Validation Successful."
