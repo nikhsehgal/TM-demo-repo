@@ -24,7 +24,7 @@ pipeline {
 		echo $JOB_NAME
 		echo ${JOB_NAME}
 		echo "${JOB_NAME}"
-                response=$(python3 TM.py $CREDS_USR $CREDS_PSW $JOB_NAME)
+                response=$(python3 TM.py $CREDS_USR $CREDS_PSW "$JOB_NAME")
                 echo $response
                 
                 successful="ThreatModeler Approval Validation Successful."
