@@ -48,7 +48,7 @@ pipeline {
 	         
                                     
                   sh '''#!/bin/bash -l
-                  threatresponse=$(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2078)
+                  threatresponse=$(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2077)
                   echo $threatresponse
                 
                 successful="No Threats Detected in ThreatModeler"
