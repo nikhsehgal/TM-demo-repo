@@ -56,7 +56,7 @@ body = {
 response = requests.post(TMJenkinsValidationURL, json=body, headers=headers)
 response_json = json.loads(response.text.encode('utf8'))
 
-if response_json["IsSuccess"]=="true":
+if response_json["IsSuccess"]==True:
     print("ThreatModeler Approval Validation Successful.")
 else:
     print(response_json["Message"])
