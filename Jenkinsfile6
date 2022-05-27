@@ -22,54 +22,25 @@ pipeline {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
 		script {
 			Boolean bool = params.ValidateThreats
-			println bool
 		
-                sh '''#!/bin/bash -l
-		echo '''+bool+'''
-                response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 ''' + bool + ''')
-                echo $response
+                	sh '''#!/bin/bash -l
+                	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 ''' + bool + ''')
+                	echo $response
+                	echo $(cut -d "\n" -f 1 $response)
+                	approvalSuccessful="ThreatModeler Approval Validation Successful."
+			threatsDetected="Threats Detected in ThreatModeler"
                 
-                successful="ThreatModeler Approval Validation Successful."
-                
-                 if [[ $response == $successful ]]
-                 then
-                    exit 0
-                 else 
-                    exit 1
-                 fi
-                '''
-		}
+                 	if [[ $response == $approvalSuccessful ]]
+                 	then
+                    		exit 0
+                 	else 
+                    		exit 1
+                 	fi
+                	'''
+		  }
                 }
             }
         }
-                
-		/*stage("Threat Model THREATS Validations"){
-			when{
-				expression {
-					params.ValidateThreats 
-				}
-			}
-			steps {
-	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
-	         
-                                    
-                  sh '''#!/bin/bash -l
-                  threatresponse=$(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2077)
-                  echo $threatresponse
-                
-                successful="No Threats Detected in ThreatModeler"
-                
-                 if [[ $threatresponse == $successful ]]
-                 then
-                    exit 0
-                 else 
-                    exit 1
-                 fi
-                '''
-                }	
-					
-	          }	
-		}*/
 	
       stage('Push') {
             steps {
