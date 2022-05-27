@@ -35,7 +35,7 @@ pipeline {
                 	
 			echo $approvalResponse
 			
-                 	if [[ $response == $approvalSuccessful ]]
+                 	if [[ $approvalResponse == $approvalSuccessful ]]
                  	then
                     		exit 0
                  	else 
