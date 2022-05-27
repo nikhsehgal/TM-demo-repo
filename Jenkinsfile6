@@ -18,15 +18,11 @@ pipeline {
         }
         
         stage('Threat Model APPROVAL Validation') {
-	        when{
-				expression {
-				Bool = params.ValidateThreats 
-				}
-			}
+	        bool = params.ValidateThreats
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
-		echo '${Bool}'
+		echo $bool
                 response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 true)
                 echo $response
                 
@@ -43,7 +39,7 @@ pipeline {
             }
         }
                 
-		stage("Threat Model THREATS Validations"){
+		/*stage("Threat Model THREATS Validations"){
 			when{
 				expression {
 					params.ValidateThreats 
@@ -69,7 +65,7 @@ pipeline {
                 }	
 					
 	          }	
-		}
+		}*/
 	
       stage('Push') {
             steps {
