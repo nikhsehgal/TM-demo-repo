@@ -25,7 +25,7 @@ pipeline {
 		
                 	sh '''#!/bin/bash -l
                 	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 ''' + bool + ''')
-                	echo $response
+                	#echo $response
 			
                 	approvalResponse=$(echo $(echo "$response" | cut -d "\n" -f 1))
 			threatsResponse=$(echo $(echo "$response" | cut -d "\n" -f 2))
@@ -36,13 +36,16 @@ pipeline {
 			echo $approvalResponse
 			
                  	if [[ $approvalResponse == $approvalSuccessful ]]
-                 	then
+			then
                     		exit 0
                  	else 
                     		exit 1
                  	fi
 			
-			echo $threatsResponse
+			if [[ $threatsDetected != "" ]]
+			then
+				echo $threatsDetected
+			fi
                 	'''
 		  }
                 }
