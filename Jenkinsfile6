@@ -42,9 +42,13 @@ pipeline {
                     		statusCode=1
                  	fi
 			
-			if [[ $threatsDetected != "" ]]
+			if [[ $threatsResponse != "" ]]
 			then
-				echo $threatsDetected
+				echo $threatsResponse
+				if [[ $threatsResponse == $threatsDetected ]]
+				then
+					statusCode=1
+				fi
 			fi
 			
 			exit $statusCode
