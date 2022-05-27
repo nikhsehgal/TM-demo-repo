@@ -20,7 +20,7 @@ pipeline {
         stage('Threat Model APPROVAL Validation') {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
-		bool = params.ValidateThreats
+		Boolean bool = params.ValidateThreats
                 sh '''#!/bin/bash -l
 		echo $bool
                 response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 true)
