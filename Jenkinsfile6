@@ -1,0 +1,76 @@
+pipeline {
+	agent any
+	
+	parameters {
+		booleanParam(name: 'ValidateThreats', defaultValue: false, description: 'Perform ThreatModeler Threats Validation.')
+	}
+	
+	environment { 
+            CREDS = credentials('TMcreds') 
+        }
+	stages {
+    
+    
+        stage('Building Pilot App') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+        
+        stage('Threat Model APPROVAL Validation') {
+            steps {
+                catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
+                sh '''#!/bin/bash -l
+		echo $params.validateThreats
+                response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 true)
+                echo $response
+                
+                successful="ThreatModeler Approval Validation Successful."
+                
+                 if [[ $response == $successful ]]
+                 then
+                    exit 0
+                 else 
+                    exit 1
+                 fi
+                '''
+                }
+            }
+        }
+                
+		stage("Threat Model THREATS Validations"){
+			when{
+				expression {
+					params.ValidateThreats
+				}
+			}
+			steps {
+	       catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') { 
+	         
+                                    
+                  sh '''#!/bin/bash -l
+                  threatresponse=$(python3 TMthreats.py $CREDS_USR $CREDS_PSW 2077)
+                  echo $threatresponse
+                
+                successful="No Threats Detected in ThreatModeler"
+                
+                 if [[ $threatresponse == $successful ]]
+                 then
+                    exit 0
+                 else 
+                    exit 1
+                 fi
+                '''
+                }	
+					
+	          }	
+		}
+	
+      stage('Push') {
+            steps {
+                sh 'exit 0'
+            }
+        }
+    
+    }
+} 
