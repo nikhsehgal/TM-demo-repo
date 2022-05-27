@@ -28,7 +28,7 @@ pipeline {
                 	#echo $response
 			
                 	approvalResponse=$(echo $(echo "$response" | cut -d "\n" -f 1))
-			threatsResponse=$(echo($(echo "$response" | cut -d "\n" -f 2))
+			threatsResponse=$(echo $(echo "$response" | cut -d "\n" -f 2))
 			
                 	approvalSuccessful="ThreatModeler Approval Validation Successful."
 			threatsDetected="Threats Detected in ThreatModeler"
