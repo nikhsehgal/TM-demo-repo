@@ -23,8 +23,7 @@ pipeline {
 		script {
 			Boolean bool = params.ValidateThreats
 			println bool
-			sh "echo $bool"
-		}
+		
                 sh '''#!/bin/bash -l
 		echo $bool
                 response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 true)
@@ -39,6 +38,7 @@ pipeline {
                     exit 1
                  fi
                 '''
+		}
                 }
             }
         }
