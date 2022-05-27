@@ -35,17 +35,19 @@ pipeline {
                 	
 			echo $approvalResponse
 			
-                 	if [[ $approvalResponse == $approvalSuccessful ]]
+			statusCode=0
+			
+                 	if [[ $approvalResponse != $approvalSuccessful ]]
 			then
-                    		exit 0
-                 	else 
-                    		exit 1
+                    		statusCode=1
                  	fi
 			
 			if [[ $threatsDetected != "" ]]
 			then
 				echo $threatsDetected
 			fi
+			
+			exit $statusCode
                 	'''
 		  }
                 }
