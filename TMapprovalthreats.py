@@ -15,7 +15,7 @@ args = parser.parse_args()
 #Environment Variables
 TMAuthenticationURL='https://deloitte-poc.threatmodeler.net/token'
 TMJenkinsValidationURL = 'https://deloitte-poc.threatmodeler.net/api/jenkins/validate'
-TMThreatsURL = https://deloitte-poc.threatmodeler.net/api/project/+ args.projectId +"/threats/true"
+TMThreatsURL = 'https://deloitte-poc.threatmodeler.net/api/project/'+ args.projectId +"/threats/true"
 username=args.username
 password=args.password
 jenkinsJobName=args.jenkinsJobName
