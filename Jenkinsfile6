@@ -26,17 +26,22 @@ pipeline {
                 	sh '''#!/bin/bash -l
                 	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 ''' + bool + ''')
                 	#echo $response
+			
                 	approvalResponse=echo $(echo "$response" | cut -d "\n" -f 1)
 			threatsResponse=echo $(echo "$response" | cut -d "\n" -f 2)
+			
                 	approvalSuccessful="ThreatModeler Approval Validation Successful."
 			threatsDetected="Threats Detected in ThreatModeler"
-                
+                	
+			echo $approvalResponse
                  	if [[ $response == $approvalSuccessful ]]
                  	then
                     		exit 0
                  	else 
                     		exit 1
                  	fi
+			
+			echo $threatsResponse
                 	'''
 		  }
                 }
