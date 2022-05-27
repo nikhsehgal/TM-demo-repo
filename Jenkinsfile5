@@ -21,6 +21,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
                 sh '''#!/bin/bash -l
+		echo $params.validateThreats
                 response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 true)
                 echo $response
                 
