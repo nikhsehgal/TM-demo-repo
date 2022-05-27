@@ -35,9 +35,6 @@ pipeline {
                 	
 			echo $approvalResponse
 			
-			if [[ ''' + bool + ''' == "true" ]]
-				echo $threatsDetected
-			
                  	if [[ $response == $approvalSuccessful ]]
                  	then
                     		exit 0
