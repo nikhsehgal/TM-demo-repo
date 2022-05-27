@@ -21,7 +21,6 @@ pipeline {
 	        when{
 				expression {
 				Bool = params.ValidateThreats 
-				echo $Bool
 				}
 			}
             steps {
