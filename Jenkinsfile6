@@ -25,7 +25,7 @@ pipeline {
 			println bool
 		
                 sh '''#!/bin/bash -l
-		echo $bool
+		echo '''+bool+'''
                 response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077''' + bool + ''')
                 echo $response
                 
