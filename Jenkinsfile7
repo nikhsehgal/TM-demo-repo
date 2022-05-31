@@ -7,6 +7,8 @@ pipeline {
 	
 	environment { 
             CREDS = credentials('TMcreds') 
+	    def config = readJSON file: 'TM.json'
+            projectId = "${config."$JOB_NAME"}"
         }
 	stages {
     
@@ -24,7 +26,7 @@ pipeline {
 			Boolean bool = params.ValidateThreats
 		
                 	sh '''#!/bin/bash -l
-                	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" 2077 ''' + bool + ''')
+                	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" $projectId ''' + bool + ''')
                 	#echo $response
 			
                 	approvalResponse=$(echo $(echo "$response" | cut -d "\n" -f 1))
