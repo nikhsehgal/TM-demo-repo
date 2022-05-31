@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         def config = readJSON file: 'TM.json'
-        projectId = "${config.$JOB_NAME}"
+        projectId = "${config.TMpipeline}"
     }
     stages {
         stage('Test') {
