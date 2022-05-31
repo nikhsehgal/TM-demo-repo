@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    environment {
+        def config = readJSON file: 'TM.json'
+        projectId = "${config.$JOB_NAME}"
+    }
+    stages {
+        stage('Test') {
+            steps {
+                echo projectId
+            }
+        }
+    }
+}
