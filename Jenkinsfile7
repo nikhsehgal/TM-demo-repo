@@ -25,11 +25,11 @@ pipeline {
 		script {
 			Boolean bool = params.ValidateThreats
 			
-			if(projectId==null) {
+			/*if(projectId==null) {
 			    currentBuild.result = 'FAILURE'
 			    println "ThreatModeler ProjectId not found in JSON."
 			    return
-			}
+			}*/
 			
                 	sh '''#!/bin/bash -l
                 	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" $projectId ''' + bool + ''')
