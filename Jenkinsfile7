@@ -24,7 +24,9 @@ pipeline {
                 catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {    
 		script {
 			Boolean bool = params.ValidateThreats
-		
+			
+			echo projectId
+			
                 	sh '''#!/bin/bash -l
                 	response=$(python3 TMapprovalthreats.py $CREDS_USR $CREDS_PSW "$JOB_NAME" $projectId ''' + bool + ''')
                 	#echo $response
